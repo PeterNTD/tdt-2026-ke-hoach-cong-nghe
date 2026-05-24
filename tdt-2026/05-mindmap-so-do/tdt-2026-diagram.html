@@ -1,0 +1,181 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sơ đồ Kế hoạch Công nghệ TCT TDT 2026</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --fg: #e5e7eb;
+      --muted: #a3adbd;
+      --line: #94a3b8;
+      --neutral: #334155;
+      --input: #1d4ed8;
+      --process: #4338ca;
+      --storage: #0f766e;
+      --external: #92400e;
+      --risk: #991b1b;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  main { max-width: 1180px; margin: 32px auto; padding: 0 20px; }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 24px; font-weight: 750; fill: var(--fg); }
+  .subtitle { font-size: 13px; fill: var(--muted); }
+  .label { font-size: 14px; font-weight: 650; fill: var(--fg); }
+  .small { font-size: 12px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1.2; rx: 16; }
+  .neutral { fill: var(--neutral); }
+  .input { fill: var(--input); }
+  .process { fill: var(--process); }
+  .storage { fill: var(--storage); }
+  .external { fill: var(--external); }
+  .risk { fill: var(--risk); }
+  .edge { stroke: var(--line); stroke-width: 1.7; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: .75; }
+</style>
+<main>
+  <svg viewBox="0 0 1180 820" role="img" aria-labelledby="title desc">
+    <title id="title">Sơ đồ kế hoạch công nghệ TCT TDT 2026</title>
+    <desc id="desc">Sơ đồ hub-spoke thể hiện các nhóm trọng tâm, nền tảng dữ liệu AI và lộ trình triển khai 06 đến 12 năm 2026.</desc>
+
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="var(--line)"></path>
+      </marker>
+    </defs>
+
+    <text x="40" y="48" class="title">Kế hoạch Công nghệ TCT TDT 2026</text>
+    <text x="40" y="74" class="subtitle">Từ dữ liệu nguồn → nền tảng số & AI → thí điểm lĩnh vực → nghiệm thu → kế hoạch 2027</text>
+
+    <!-- Connectors behind nodes -->
+    <path class="edge" marker-end="url(#arrow)" d="M330 165 C390 165 405 260 465 260" />
+    <path class="edge" marker-end="url(#arrow)" d="M330 255 C390 255 405 300 465 300" />
+    <path class="edge" marker-end="url(#arrow)" d="M330 345 C390 345 405 340 465 340" />
+    <path class="edge" marker-end="url(#arrow)" d="M330 435 C390 435 405 380 465 380" />
+
+    <path class="edge" marker-end="url(#arrow)" d="M690 300 C735 300 755 190 800 190" />
+    <path class="edge" marker-end="url(#arrow)" d="M690 325 C735 325 755 300 800 300" />
+    <path class="edge" marker-end="url(#arrow)" d="M690 350 C735 350 755 410 800 410" />
+    <path class="edge" marker-end="url(#arrow)" d="M690 375 C735 375 755 520 800 520" />
+
+    <path class="edge" marker-end="url(#arrow)" d="M930 300 C980 300 1000 640 1040 640" />
+    <path class="edge" marker-end="url(#arrow)" d="M930 410 C980 410 1000 655 1040 655" />
+    <path class="edge" marker-end="url(#arrow)" d="M930 520 C980 520 1000 670 1040 670" />
+    <path class="edge" marker-end="url(#arrow)" d="M930 190 C980 190 1000 625 1040 625" />
+
+    <!-- Zones -->
+    <rect x="30" y="105" width="330" height="390" class="zone" rx="22" />
+    <text x="50" y="130" class="small">Dữ liệu & hồ sơ đầu vào</text>
+
+    <rect x="435" y="180" width="290" height="250" class="zone" rx="22" />
+    <text x="455" y="205" class="small">Nền tảng lõi</text>
+
+    <rect x="770" y="105" width="210" height="480" class="zone" rx="22" />
+    <text x="790" y="130" class="small">Lĩnh vực thí điểm</text>
+
+    <rect x="1015" y="595" width="140" height="120" class="zone" rx="22" />
+    <text x="1033" y="620" class="small">Kết quả 2026</text>
+
+    <!-- Inputs -->
+    <rect x="60" y="145" width="270" height="56" class="node input" />
+    <text x="84" y="170" class="label">Kế hoạch & tiến độ</text>
+    <text x="84" y="188" class="small">File MD, bảng tháng 06–12</text>
+
+    <rect x="60" y="235" width="270" height="56" class="node input" />
+    <text x="84" y="260" class="label">Quy trình & biểu mẫu</text>
+    <text x="84" y="278" class="small">Văn bản, phê duyệt, báo cáo</text>
+
+    <rect x="60" y="325" width="270" height="56" class="node input" />
+    <text x="84" y="350" class="label">Dữ liệu vận hành</text>
+    <text x="84" y="368" class="small">Tiến độ, sản xuất, QC, kho</text>
+
+    <rect x="60" y="415" width="270" height="56" class="node input" />
+    <text x="84" y="440" class="label">Hồ sơ dự án & đối tác</text>
+    <text x="84" y="458" class="small">BĐS, vật liệu, IP, MVP</text>
+
+    <!-- Core -->
+    <rect x="465" y="240" width="225" height="72" class="node process" />
+    <text x="489" y="270" class="label">Kho tri thức Trung tâm dữ liệu</text>
+    <text x="489" y="290" class="small">Hỏi đáp theo nguồn, citation</text>
+
+    <rect x="465" y="334" width="225" height="72" class="node storage" />
+    <text x="489" y="364" class="label">Data catalog & dashboard</text>
+    <text x="489" y="384" class="small">KPI, rủi ro, nghiệm thu</text>
+
+    <!-- Domains -->
+    <rect x="800" y="160" width="130" height="60" class="node process" />
+    <text x="824" y="186" class="label">Nền tảng số</text>
+    <text x="824" y="204" class="small">Workflow, hồ sơ</text>
+
+    <rect x="800" y="270" width="130" height="60" class="node process" />
+    <text x="824" y="296" class="label">AI điều hành</text>
+    <text x="824" y="314" class="small">AI, dashboard</text>
+
+    <rect x="800" y="380" width="130" height="60" class="node process" />
+    <text x="824" y="406" class="label">Công nghiệp</text>
+    <text x="824" y="424" class="small">Sản xuất, QC</text>
+
+    <rect x="800" y="490" width="130" height="60" class="node process" />
+    <text x="824" y="516" class="label">BĐS · Vật liệu · IP</text>
+    <text x="824" y="534" class="small">Dự án, MVP</text>
+
+    <!-- Outputs -->
+    <rect x="1040" y="632" width="90" height="56" class="node external" />
+    <text x="1064" y="656" class="label">Nghiệm thu</text>
+    <text x="1064" y="674" class="small">T11/2026</text>
+
+    <rect x="60" y="555" width="1070" height="170" class="node neutral" />
+    <text x="84" y="588" class="label">Lộ trình triển khai</text>
+
+    <line x1="115" y1="640" x2="1075" y2="640" class="edge" />
+    <circle cx="150" cy="640" r="9" fill="var(--external)" stroke="var(--line)" />
+    <circle cx="380" cy="640" r="9" fill="var(--external)" stroke="var(--line)" />
+    <circle cx="610" cy="640" r="9" fill="var(--external)" stroke="var(--line)" />
+    <circle cx="840" cy="640" r="9" fill="var(--external)" stroke="var(--line)" />
+    <circle cx="1055" cy="640" r="9" fill="var(--external)" stroke="var(--line)" />
+
+    <text x="122" y="674" class="label">T6</text>
+    <text x="84" y="694" class="small">Chuẩn hóa đầu vào</text>
+
+    <text x="340" y="674" class="label">T7–T8</text>
+    <text x="300" y="694" class="small">Thiết kế & MVP</text>
+
+    <text x="570" y="674" class="label">T9–T10</text>
+    <text x="524" y="694" class="small">Vận hành thực tế</text>
+
+    <text x="804" y="674" class="label">T11</text>
+    <text x="770" y="694" class="small">Nghiệm thu thí điểm</text>
+
+    <text x="1020" y="674" class="label">T12</text>
+    <text x="972" y="694" class="small">Tổng kết & kế hoạch 2027</text>
+
+    <!-- Legend -->
+    <rect x="60" y="760" width="16" height="16" class="node input" />
+    <text x="84" y="773" class="small">Nguồn dữ liệu</text>
+    <rect x="190" y="760" width="16" height="16" class="node process" />
+    <text x="214" y="773" class="small">Xử lý/triển khai</text>
+    <rect x="340" y="760" width="16" height="16" class="node storage" />
+    <text x="364" y="773" class="small">Kho dữ liệu/dashboard</text>
+    <rect x="530" y="760" width="16" height="16" class="node external" />
+    <text x="554" y="773" class="small">Mốc bàn giao</text>
+  </svg>
+</main>
