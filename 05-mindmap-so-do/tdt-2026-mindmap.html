@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mind Map - Kế hoạch Công nghệ TCT TDT 2026</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: rgba(255,255,255,.08);
+      --panel-2: rgba(255,255,255,.12);
+      --text: #f5f7fb;
+      --muted: #a9b6cc;
+      --line: rgba(255,255,255,.18);
+      --gold: #f4c95d;
+      --blue: #65b6ff;
+      --cyan: #55e6c1;
+      --violet: #b38cff;
+      --orange: #ff9d66;
+      --green: #84e084;
+      --pink: #ff86c8;
+      --red: #ff7d7d;
+      --shadow: 0 24px 70px rgba(0,0,0,.36);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Segoe UI", "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(101,182,255,.24), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(244,201,93,.18), transparent 30%),
+        radial-gradient(circle at 50% 96%, rgba(85,230,193,.18), transparent 34%),
+        linear-gradient(135deg, #07101d 0%, #0b1630 52%, #050a13 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .35;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+    }
+
+    .page {
+      width: min(1520px, 100%);
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.055));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero::after {
+      content: "TDT 2026";
+      position: absolute;
+      right: 18px;
+      bottom: -32px;
+      color: rgba(255,255,255,.045);
+      font-size: clamp(56px, 12vw, 170px);
+      font-weight: 900;
+      letter-spacing: -8px;
+      line-height: .8;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(244,201,93,.32);
+      border-radius: 999px;
+      color: #ffe6a2;
+      background: rgba(244,201,93,.09);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      margin: 16px 0 10px;
+      max-width: 980px;
+      font-size: clamp(34px, 6vw, 82px);
+      line-height: .96;
+      letter-spacing: -3px;
+    }
+
+    .lead {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 850px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.65;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(14px);
+    }
+
+    .toolbar-left, .toolbar-right { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+    button, .chip {
+      min-height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--text);
+      background: rgba(255,255,255,.08);
+      font: inherit;
+      font-weight: 700;
+    }
+
+    button {
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+
+    button:hover { transform: translateY(-1px); background: rgba(255,255,255,.14); }
+    button:focus-visible { outline: 3px solid rgba(101,182,255,.75); outline-offset: 3px; }
+
+    .primary {
+      border-color: rgba(244,201,93,.45);
+      color: #172033;
+      background: linear-gradient(135deg, #ffe08a, #f4c95d);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 22px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,.075);
+      backdrop-filter: blur(14px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(26px, 4vw, 44px);
+      letter-spacing: -1px;
+      color: var(--gold);
+    }
+
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    .mindmap-wrap {
+      position: relative;
+      overflow: auto;
+      min-height: 640px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255,255,255,.055);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .mindmap {
+      min-width: 1120px;
+      display: flex;
+      align-items: center;
+      gap: 44px;
+      padding: 20px 8px;
+    }
+
+    .root-card {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      flex: 0 0 300px;
+      padding: 28px;
+      border-radius: 30px;
+      color: #10192b;
+      background: linear-gradient(135deg, #fff0ba, #f4c95d 50%, #ffb86b);
+      box-shadow: 0 28px 80px rgba(244,201,93,.24);
+    }
+
+    .root-card .label { font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; opacity: .72; }
+    .root-card h2 { margin: 10px 0 12px; font-size: 34px; line-height: 1; letter-spacing: -1.5px; }
+    .root-card p { margin: 0; line-height: 1.55; font-weight: 650; color: rgba(16,25,43,.72); }
+
+    .branches {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .branch {
+      position: relative;
+      min-height: 250px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.115), rgba(255,255,255,.055));
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .branch:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent), white 15%);
+      background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
+    }
+
+    .branch::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--accent), transparent 42%, rgba(255,255,255,.2));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: .72;
+    }
+
+    .branch-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 14px;
+      margin-top: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 28px var(--accent);
+    }
+
+    .branch h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.16;
+      letter-spacing: -.45px;
+    }
+
+    .branch ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .branch li {
+      position: relative;
+      padding: 9px 10px 9px 26px;
+      border-radius: 14px;
+      color: #dce7f7;
+      background: rgba(0,0,0,.16);
+      line-height: 1.35;
+      font-size: 14px;
+    }
+
+    .branch li::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 16px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .85;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .month {
+      min-height: 118px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .month strong { display: block; color: var(--gold); font-size: 18px; margin-bottom: 7px; }
+    .month span { color: var(--muted); line-height: 1.45; font-size: 14px; }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 14px 12px 28px; }
+      .hero { padding: 20px; border-radius: 24px; }
+      h1 { letter-spacing: -1.6px; }
+      .stats { grid-template-columns: 1fr; }
+      .toolbar { align-items: stretch; }
+      .toolbar-left, .toolbar-right, button, .chip { width: 100%; justify-content: center; text-align: center; }
+      .mindmap-wrap { padding: 12px; border-radius: 22px; }
+      .mindmap { min-width: 900px; gap: 22px; }
+      .root-card { flex-basis: 240px; padding: 20px; }
+      .root-card h2 { font-size: 28px; }
+      .branches { grid-template-columns: repeat(4, 220px); }
+      .timeline { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #0b1220; }
+      .toolbar { display: none; }
+      .mindmap-wrap { overflow: visible; }
+      .mindmap { min-width: 0; display: block; }
+      .root-card { position: relative; margin-bottom: 16px; }
+      .branches { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <section class="hero" aria-labelledby="page-title">
+        <span class="eyebrow">Mind map tương tác · TCT TDT · 06–12/2026</span>
+        <h1 id="page-title">Kế hoạch Công nghệ TCT TDT 2026</h1>
+        <p class="lead">Bản đồ tư duy tổng hợp các lĩnh vực trọng tâm, nguyên tắc quản trị và lộ trình triển khai. Thiết kế để trình chiếu nhanh, trao đổi nội bộ và làm đầu vào cho dashboard/roadmap chi tiết.</p>
+      </section>
+
+      <nav class="toolbar" aria-label="Công cụ xem mind map">
+        <div class="toolbar-left">
+          <span class="chip">8 nhánh chính</span>
+          <span class="chip">37 đầu mục</span>
+          <span class="chip">5 mốc triển khai</span>
+        </div>
+        <div class="toolbar-right">
+          <button type="button" onclick="document.querySelector('.mindmap-wrap').scrollTo({left:0, behavior:'smooth'})">Về đầu sơ đồ</button>
+          <button type="button" class="primary" onclick="window.print()">In / Lưu PDF</button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="stats" aria-label="Chỉ số tổng quan">
+      <article class="stat"><strong>06–12</strong><span>Thời gian triển khai trong năm 2026</span></article>
+      <article class="stat"><strong>8</strong><span>Nhánh chiến lược trong mind map</span></article>
+      <article class="stat"><strong>27+</strong><span>Hạng mục có thể chuyển thành kế hoạch giao việc</span></article>
+      <article class="stat"><strong>2027</strong><span>Căn cứ nhân rộng, điều chỉnh hoặc thương mại hóa</span></article>
+    </section>
+
+    <section class="mindmap-wrap" aria-label="Mind map kế hoạch công nghệ TDT 2026">
+      <div class="mindmap">
+        <article class="root-card">
+          <div class="label">Trung tâm</div>
+          <h2>Kế hoạch Công nghệ TCT TDT 2026</h2>
+          <p>Từ định hướng chiến lược đến thí điểm, nghiệm thu và kế hoạch nhân rộng năm 2027.</p>
+        </article>
+
+        <section class="branches" id="branches"></section>
+      </div>
+    </section>
+
+    <section class="timeline" aria-label="Lộ trình triển khai">
+      <article class="month"><strong>T6</strong><span>Chuẩn hóa đầu vào, phân công đầu mối, thu thập dữ liệu hiện trạng.</span></article>
+      <article class="month"><strong>T7–T8</strong><span>Thiết kế quy trình, MVP, dashboard mẫu và đào tạo nhóm thí điểm.</span></article>
+      <article class="month"><strong>T9–T10</strong><span>Vận hành thực tế, đo hiệu quả, tối ưu quy trình và dữ liệu.</span></article>
+      <article class="month"><strong>T11</strong><span>Nghiệm thu thí điểm, quyết định nhân rộng/dừng/điều chỉnh.</span></article>
+      <article class="month"><strong>T12</strong><span>Tổng kết 2026, chuẩn hóa tài liệu và lập kế hoạch 2027.</span></article>
+    </section>
+
+    <p class="footer-note">Nguồn dữ liệu: tdt-2026-mindmap.json · Tạo từ NotebookLM notebook “TDT 2026 - Ke hoach cong nghe”.</p>
+  </main>
+
+  <script>
+    const data = {
+      name: "Kế hoạch Công nghệ TCT TDT 2026",
+      children: [
+        { name: "Nguyên tắc & Quản trị", children: ["Bắt đầu từ 06/2026", "Ưu tiên thí điểm nhỏ", "Đầu ra hữu hình", "Nghiệm thu theo tháng", "Căn cứ kế hoạch 2027"].map(name => ({ name })) },
+        { name: "Nền tảng số", children: ["Quản trị công việc & tiến độ", "Quản lý văn bản & phê duyệt điện tử", "Kho dữ liệu dùng chung (Data Catalog)", "Tích hợp phần mềm & chuẩn hóa tài khoản"].map(name => ({ name })) },
+        { name: "AI & Điều hành thông minh", children: ["Trợ lý AI nội bộ TDT", "Dashboard điều hành thông minh", "AI hỗ trợ văn bản & báo cáo", "Cảnh báo rủi ro tiến độ"].map(name => ({ name })) },
+        { name: "Công nghệ công nghiệp", children: ["Số hóa dữ liệu sản xuất", "Giám sát thiết bị & dừng máy", "Kiểm soát chất lượng (QC) bằng dữ liệu", "Quản lý vật tư & tồn kho", "Theo dõi tiêu hao năng lượng"].map(name => ({ name })) },
+        { name: "Công nghệ vật liệu chiến lược", children: ["Danh mục vật liệu ưu tiên", "Nghiên cứu & thử nghiệm cải tiến", "Hợp tác Viện/Trường/Đối tác", "Bảo hộ & thương mại hóa vật liệu"].map(name => ({ name })) },
+        { name: "Công nghệ Đô thị & BĐS", children: ["Nền tảng quản lý dự án BĐS", "Quản lý tài sản & vận hành đô thị", "Quản lý kinh doanh & CRM", "Cổng thông tin khách hàng/cư dân", "Thí điểm Đô thị thông minh"].map(name => ({ name })) },
+        { name: "Sản phẩm hóa & IP", children: ["Quy trình phát triển sản phẩm", "Danh mục sản phẩm nội bộ", "Phát triển MVP", "Quản lý tài sản trí tuệ (IP)", "Phương án thương mại hóa"].map(name => ({ name })) },
+        { name: "Lộ trình triển khai (Mốc chính)", children: ["T6: Chuẩn hóa đầu vào", "T7-T8: Thiết kế & MVP", "T9-T10: Vận hành thực tế", "T11: Nghiệm thu thí điểm", "T12: Tổng kết & Kế hoạch 2027"].map(name => ({ name })) }
+      ]
+    };
+
+    const colors = ["#f4c95d", "#65b6ff", "#55e6c1", "#b38cff", "#ff9d66", "#84e084", "#ff86c8", "#ff7d7d"];
+    const branches = document.getElementById("branches");
+
+    data.children.forEach((branch, index) => {
+      const card = document.createElement("article");
+      card.className = "branch";
+      card.style.setProperty("--accent", colors[index % colors.length]);
+      card.innerHTML = `
+        <div class="branch-head">
+          <span class="dot" aria-hidden="true"></span>
+          <h3>${branch.name}</h3>
+        </div>
+        <ul>${branch.children.map(child => `<li>${child.name}</li>`).join("")}</ul>
+      `;
+      branches.appendChild(card);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+{
+  "mind_map": {
+    "name": "Kế hoạch Công nghệ TCT TDT 2026",
+    "children": [
+      {
+        "name": "Nguyên tắc & Quản trị",
+        "children": [
+          { "name": "Bắt đầu từ 06/2026" },
+          { "name": "Ưu tiên thí điểm nhỏ" },
+          { "name": "Đầu ra hữu hình" },
+          { "name": "Nghiệm thu theo tháng" },
+          { "name": "Căn cứ kế hoạch 2027" }
+        ]
+      },
+      {
+        "name": "Nền tảng số",
+        "children": [
+          { "name": "Quản trị công việc & tiến độ" },
+          { "name": "Quản lý văn bản & phê duyệt điện tử" },
+          { "name": "Kho dữ liệu dùng chung (Data Catalog)" },
+          { "name": "Tích hợp phần mềm & chuẩn hóa tài khoản" }
+        ]
+      },
+      {
+        "name": "AI & Điều hành thông minh",
+        "children": [
+          { "name": "Trợ lý AI nội bộ TDT" },
+          { "name": "Dashboard điều hành thông minh" },
+          { "name": "AI hỗ trợ văn bản & báo cáo" },
+          { "name": "Cảnh báo rủi ro tiến độ" }
+        ]
+      },
+      {
+        "name": "Công nghệ công nghiệp",
+        "children": [
+          { "name": "Số hóa dữ liệu sản xuất" },
+          { "name": "Giám sát thiết bị & dừng máy" },
+          { "name": "Kiểm soát chất lượng (QC) bằng dữ liệu" },
+          { "name": "Quản lý vật tư & tồn kho" },
+          { "name": "Theo dõi tiêu hao năng lượng" }
+        ]
+      },
+      {
+        "name": "Công nghệ vật liệu chiến lược",
+        "children": [
+          { "name": "Danh mục vật liệu ưu tiên" },
+          { "name": "Nghiên cứu & thử nghiệm cải tiến" },
+          { "name": "Hợp tác Viện/Trường/Đối tác" },
+          { "name": "Bảo hộ & thương mại hóa vật liệu" }
+        ]
+      },
+      {
+        "name": "Công nghệ Đô thị & BĐS",
+        "children": [
+          { "name": "Nền tảng quản lý dự án BĐS" },
+          { "name": "Quản lý tài sản & vận hành đô thị" },
+          { "name": "Quản lý kinh doanh & CRM" },
+          { "name": "Cổng thông tin khách hàng/cư dân" },
+          { "name": "Thí điểm Đô thị thông minh" }
+        ]
+      },
+      {
+        "name": "Sản phẩm hóa & IP",
+        "children": [
+          { "name": "Quy trình phát triển sản phẩm" },
+          { "name": "Danh mục sản phẩm nội bộ" },
+          { "name": "Phát triển MVP" },
+          { "name": "Quản lý tài sản trí tuệ (IP)" },
+          { "name": "Phương án thương mại hóa" }
+        ]
+      },
+      {
+        "name": "Lộ trình triển khai (Mốc chính)",
+        "children": [
+          { "name": "T6: Chuẩn hóa đầu vào" },
+          { "name": "T7-T8: Thiết kế & MVP" },
+          { "name": "T9-T10: Vận hành thực tế" },
+          { "name": "T11: Nghiệm thu thí điểm" },
+          { "name": "T12: Tổng kết & Kế hoạch 2027" }
+        ]
+      }
+    ]
+  },
+  "note_id": "5399df27-8c73-4935-a54e-22c9ff168c2b",
+  "source_notebook_id": "5e8e5452-514d-4565-90d8-bd2876ccf5b4",
+  "source_notebook_title": "TDT 2026 - Ke hoach cong nghe"
+}

@@ -1,0 +1,15 @@
+{
+  "notebooklm": {
+    "notebook_id": "5e8e5452-514d-4565-90d8-bd2876ccf5b4",
+    "python_command": "python",
+    "timeout_seconds": 120
+  },
+  "telegram": {
+    "allowed_user_ids": [307152071],
+    "reply_max_chars": 3500
+  },
+  "logging": {
+    "enabled": true,
+    "log_file": "tdt-2026/07-chatbot-notebooklm/logs/chatbot.log"
+  }
+}

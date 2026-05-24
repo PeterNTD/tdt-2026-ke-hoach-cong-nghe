@@ -1,0 +1,276 @@
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+
+base = Path(r"C:\Users\tdt\.openclaw\workspace")
+html_path = base / "TDT_2026_Ke_hoach_Cong_nghe_Deck_VN.html"
+pdf_path = base / "TDT_2026_Ke_hoach_Cong_nghe_Deck_VN.pdf"
+
+html = r'''<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kế hoạch Công nghệ TCT TDT 2026</title>
+<style>
+  @page { size: 16in 9in; margin: 0; }
+  :root {
+    --navy: #071426;
+    --navy2: #0c1f3a;
+    --ink: #122033;
+    --muted: #64748b;
+    --paper: #f6f1e8;
+    --card: #fffaf0;
+    --gold: #d7a93d;
+    --gold2: #f3cf73;
+    --blue: #2563eb;
+    --cyan: #0f766e;
+    --green: #15803d;
+    --orange: #c2410c;
+    --violet: #6d28d9;
+    --red: #b91c1c;
+    --line: #d8cdb7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #111827;
+    color: var(--ink);
+    font-family: "Segoe UI", "Be Vietnam Pro", system-ui, -apple-system, sans-serif;
+  }
+  .deck { width: 16in; margin: 0 auto; background: #111827; }
+  .slide {
+    position: relative;
+    width: 16in;
+    height: 9in;
+    overflow: hidden;
+    padding: .55in .68in;
+    page-break-after: always;
+    background:
+      linear-gradient(90deg, rgba(7,20,38,.04) 1px, transparent 1px),
+      linear-gradient(rgba(7,20,38,.04) 1px, transparent 1px),
+      var(--paper);
+    background-size: .32in .32in;
+  }
+  .slide.dark {
+    color: #f8fafc;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(215,169,61,.22), transparent 28%),
+      radial-gradient(circle at 16% 84%, rgba(37,99,235,.22), transparent 30%),
+      linear-gradient(135deg, var(--navy), var(--navy2));
+  }
+  .slide.dark .muted, .slide.dark .kicker { color: #b8c4d6; }
+  .slide.dark .rule { background: rgba(255,255,255,.2); }
+  .brand { position: absolute; left: .68in; top: .36in; font-weight: 800; letter-spacing: .08em; font-size: .15in; color: var(--gold); text-transform: uppercase; }
+  .page { position: absolute; right: .68in; bottom: .32in; color: #94a3b8; font-size: .14in; }
+  .slide:not(.dark) .page { color: #8b7f6a; }
+  h1, h2, h3, p { margin: 0; }
+  h1 { font-size: .84in; line-height: .94; letter-spacing: -.045em; max-width: 10.8in; }
+  h2 { font-size: .44in; line-height: 1.06; letter-spacing: -.025em; max-width: 10.8in; }
+  h3 { font-size: .24in; line-height: 1.18; }
+  .kicker { font-size: .16in; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .14in; }
+  .lead { font-size: .24in; line-height: 1.45; max-width: 9.4in; color: #dce6f5; margin-top: .34in; }
+  .muted { color: var(--muted); }
+  .rule { width: 1.05in; height: .045in; border-radius: 99px; background: var(--gold); margin: .22in 0 .26in; }
+  .grid { display: grid; gap: .22in; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .card {
+    background: rgba(255,250,240,.92);
+    border: 1px solid var(--line);
+    border-radius: .18in;
+    padding: .22in;
+    box-shadow: 0 18px 40px rgba(30,41,59,.08);
+  }
+  .dark .card { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.15); color: #f8fafc; }
+  .card p, li { font-size: .17in; line-height: 1.45; }
+  .card .num { font-size: .44in; line-height: 1; color: var(--gold); font-weight: 900; letter-spacing: -.04em; margin-bottom: .1in; }
+  ul { margin: .14in 0 0; padding-left: .23in; }
+  li { margin-bottom: .08in; }
+  .pill { display: inline-block; padding: .08in .13in; border-radius: 99px; background: rgba(215,169,61,.15); color: #7a5510; font-weight: 800; font-size: .14in; margin-bottom: .1in; }
+  .dark .pill { color: #ffe7a8; background: rgba(215,169,61,.16); }
+  .matrix { display: grid; grid-template-columns: 1.2fr repeat(5, 1fr); border: 1px solid var(--line); border-radius: .16in; overflow: hidden; margin-top: .28in; }
+  .matrix div { padding: .11in .13in; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: .145in; min-height: .42in; background: rgba(255,250,240,.72); }
+  .matrix .head { font-weight: 900; color: #5d4110; background: #ead7ac; }
+  .matrix .done { color: var(--green); font-weight: 900; text-align: center; }
+  .matrix .work { color: var(--blue); font-weight: 900; text-align: center; }
+  .matrix .mile { color: var(--orange); font-weight: 900; text-align: center; }
+  .roadmap { display: grid; grid-template-columns: repeat(5, 1fr); gap: .12in; margin-top: .34in; }
+  .step { position: relative; padding: .22in .18in; border-radius: .16in; background: #fffaf0; border: 1px solid var(--line); min-height: 1.35in; }
+  .step::before { content: ""; position: absolute; left: .18in; top: -.08in; width: .38in; height: .08in; border-radius: 99px; background: var(--gold); }
+  .step strong { display: block; font-size: .25in; color: var(--navy); margin-bottom: .08in; }
+  .step span { color: var(--muted); font-size: .155in; line-height: 1.4; }
+  .big-number { font-size: 1.2in; line-height: .9; color: var(--gold); font-weight: 950; letter-spacing: -.06em; }
+  .footer-note { position: absolute; left: .68in; bottom: .32in; color: #8b7f6a; font-size: .14in; }
+  .cover-mark { position: absolute; right: .5in; bottom: -.25in; font-size: 1.8in; line-height: .8; font-weight: 950; color: rgba(255,255,255,.055); letter-spacing: -.08em; }
+  .accent-line { position: absolute; left: 0; top: 0; width: .13in; height: 100%; background: var(--gold); }
+  .flow { display: grid; grid-template-columns: 1fr .45fr 1fr .45fr 1fr; align-items: center; gap: .12in; margin-top: .38in; }
+  .flow-card { min-height: 1.35in; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .arrow { text-align: center; font-size: .42in; color: var(--gold); font-weight: 900; }
+  .tag-blue { color: var(--blue); } .tag-cyan { color: var(--cyan); } .tag-orange { color: var(--orange); } .tag-violet { color: var(--violet); }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide dark">
+  <div class="brand">TCT TDT · Kế hoạch 2026</div>
+  <div style="margin-top:1.25in"></div>
+  <div class="kicker">Bản trình bày lãnh đạo</div>
+  <h1>Kế hoạch Công nghệ trọng tâm 2026</h1>
+  <p class="lead">Chuyển định hướng công nghệ thành danh mục triển khai có mốc, có KPI, có sản phẩm bàn giao và có căn cứ lập kế hoạch 2027.</p>
+  <div class="grid cols-3" style="margin-top:.58in; max-width:10.5in">
+    <div class="card"><div class="num">06–12</div><p>Thời gian triển khai trong năm 2026</p></div>
+    <div class="card"><div class="num">6</div><p>Lĩnh vực trọng tâm công nghệ</p></div>
+    <div class="card"><div class="num">27+</div><p>Hạng mục có thể giao việc và nghiệm thu</p></div>
+  </div>
+  <div class="cover-mark">TDT 2026</div>
+  <div class="page">01</div>
+</section>
+
+<section class="slide">
+  <div class="accent-line"></div><div class="brand">Tổng quan</div>
+  <div style="margin-top:.72in"></div>
+  <div class="kicker">Mục tiêu điều hành</div>
+  <h2>Không chỉ lập kế hoạch — cần tạo hệ thống triển khai đo được</h2>
+  <div class="rule"></div>
+  <div class="grid cols-3">
+    <div class="card"><span class="pill">01</span><h3>Chọn đúng việc</h3><p class="muted">Xác định hạng mục ưu tiên, phạm vi thí điểm và tiêu chí dừng/nhân rộng.</p></div>
+    <div class="card"><span class="pill">02</span><h3>Quản trị bằng dữ liệu</h3><p class="muted">Chuẩn hóa nhiệm vụ, dashboard, cảnh báo và data catalog cho điều hành.</p></div>
+    <div class="card"><span class="pill">03</span><h3>Nghiệm thu rõ ràng</h3><p class="muted">Mỗi hạng mục có sản phẩm bàn giao, KPI, owner và mốc tháng 11/2026.</p></div>
+  </div>
+  <div class="footer-note">Nguyên tắc: thí điểm nhỏ · dữ liệu thật · đầu ra hữu hình · quyết định 2027 dựa trên kết quả.</div>
+  <div class="page">02</div>
+</section>
+
+<section class="slide">
+  <div class="accent-line"></div><div class="brand">Danh mục trọng tâm</div>
+  <div style="margin-top:.72in"></div>
+  <div class="kicker">6 nhóm chương trình</div>
+  <h2>Khung triển khai công nghệ của TCT TDT năm 2026</h2>
+  <div class="rule"></div>
+  <div class="grid cols-3">
+    <div class="card"><h3 class="tag-blue">Nền tảng số</h3><ul><li>Quản trị công việc</li><li>Văn bản/phê duyệt điện tử</li><li>Kho dữ liệu dùng chung</li></ul></div>
+    <div class="card"><h3 class="tag-violet">AI & điều hành</h3><ul><li>Trợ lý AI nội bộ</li><li>Dashboard lãnh đạo</li><li>Cảnh báo rủi ro</li></ul></div>
+    <div class="card"><h3 class="tag-cyan">Công nghệ công nghiệp</h3><ul><li>Số hóa sản xuất</li><li>Giám sát thiết bị</li><li>QC, kho, năng lượng</li></ul></div>
+    <div class="card"><h3 class="tag-orange">Vật liệu chiến lược</h3><ul><li>Danh mục vật liệu</li><li>Thử nghiệm cải tiến</li><li>Hợp tác viện/trường</li></ul></div>
+    <div class="card"><h3 class="tag-blue">Đô thị & BĐS</h3><ul><li>Quản lý dự án BĐS</li><li>Tài sản/vận hành đô thị</li><li>CRM & cổng cư dân</li></ul></div>
+    <div class="card"><h3 class="tag-cyan">Sản phẩm hóa & IP</h3><ul><li>Quy trình sản phẩm hóa</li><li>MVP nội bộ</li><li>Bảo hộ & thương mại hóa</li></ul></div>
+  </div>
+  <div class="page">03</div>
+</section>
+
+<section class="slide">
+  <div class="accent-line"></div><div class="brand">Mô hình triển khai</div>
+  <div style="margin-top:.72in"></div>
+  <div class="kicker">Luồng thực thi</div>
+  <h2>Từ hồ sơ rời rạc đến quyết định điều hành dựa trên dữ liệu</h2>
+  <div class="flow">
+    <div class="card flow-card"><h3>Dữ liệu & hồ sơ</h3><p class="muted">Kế hoạch, tiến độ, quy trình, báo cáo, hồ sơ dự án, dữ liệu vận hành.</p></div>
+    <div class="arrow">→</div>
+    <div class="card flow-card"><h3>Nền tảng lõi</h3><p class="muted">NotebookLM/kho tri thức, data catalog, dashboard, mẫu báo cáo và cảnh báo.</p></div>
+    <div class="arrow">→</div>
+    <div class="card flow-card"><h3>Thí điểm & nghiệm thu</h3><p class="muted">Chạy với dữ liệu thật, đo KPI, nghiệm thu tháng 11 và lập kế hoạch 2027.</p></div>
+  </div>
+  <div class="grid cols-2" style="margin-top:.34in">
+    <div class="card"><h3>Điểm kiểm soát</h3><ul><li>Owner rõ ràng cho từng hạng mục</li><li>KPI đo được theo tuần/tháng</li><li>Cảnh báo sớm việc chậm/rủi ro</li></ul></div>
+    <div class="card"><h3>Sản phẩm bàn giao</h3><ul><li>Dashboard, quy trình, biểu mẫu</li><li>Kho tri thức và báo cáo tổng hợp</li><li>Biên bản nghiệm thu và đề xuất 2027</li></ul></div>
+  </div>
+  <div class="page">04</div>
+</section>
+
+<section class="slide">
+  <div class="accent-line"></div><div class="brand">Lộ trình</div>
+  <div style="margin-top:.72in"></div>
+  <div class="kicker">06–12/2026</div>
+  <h2>Tiến độ triển khai theo 5 chặng quản trị</h2>
+  <div class="roadmap">
+    <div class="step"><strong>T6</strong><span>Chuẩn hóa đầu vào, phân công đầu mối, thu thập dữ liệu hiện trạng.</span></div>
+    <div class="step"><strong>T7–T8</strong><span>Thiết kế quy trình, MVP, dashboard mẫu và đào tạo nhóm thí điểm.</span></div>
+    <div class="step"><strong>T9–T10</strong><span>Vận hành thực tế, đo hiệu quả, tối ưu quy trình và chất lượng dữ liệu.</span></div>
+    <div class="step"><strong>T11</strong><span>Nghiệm thu thí điểm, quyết định nhân rộng, điều chỉnh hoặc dừng.</span></div>
+    <div class="step"><strong>T12</strong><span>Tổng kết 2026, chuẩn hóa tài liệu, lập danh mục dự án/ngân sách 2027.</span></div>
+  </div>
+  <div class="footer-note">Mốc quan trọng nhất: tháng 11/2026 — nghiệm thu thí điểm và chốt khuyến nghị 2027.</div>
+  <div class="page">05</div>
+</section>
+
+<section class="slide">
+  <div class="accent-line"></div><div class="brand">Ưu tiên triển khai</div>
+  <div style="margin-top:.72in"></div>
+  <div class="kicker">5 hạng mục khởi động trước</div>
+  <h2>Ưu tiên các nền tảng tạo dữ liệu và năng lực điều hành</h2>
+  <div class="matrix">
+    <div class="head">Hạng mục</div><div class="head">T6</div><div class="head">T7–T8</div><div class="head">T9–T10</div><div class="head">T11</div><div class="head">KPI chính</div>
+    <div>Quản trị công việc & tiến độ</div><div class="work">●</div><div class="work">●</div><div class="work">●</div><div class="mile">▲</div><div>≥80% việc cập nhật đúng hạn</div>
+    <div>Kho dữ liệu dùng chung</div><div class="work">●</div><div class="work">●</div><div class="work">●</div><div class="mile">▲</div><div>5 nhóm dữ liệu chuẩn hóa</div>
+    <div>Dashboard điều hành</div><div>◐</div><div class="work">●</div><div class="work">●</div><div class="mile">▲</div><div>≥5 dashboard dữ liệu thật</div>
+    <div>Trợ lý AI nội bộ</div><div>◐</div><div class="work">●</div><div class="work">●</div><div class="mile">▲</div><div>Đúng nguồn ≥80%</div>
+    <div>AI hỗ trợ văn bản/báo cáo</div><div class="work">●</div><div class="work">●</div><div class="mile">▲</div><div>◐</div><div>20 prompt, 10 mẫu tài liệu</div>
+  </div>
+  <div class="page">06</div>
+</section>
+
+<section class="slide">
+  <div class="accent-line"></div><div class="brand">Quản trị rủi ro</div>
+  <div style="margin-top:.72in"></div>
+  <div class="kicker">Các điểm nghẽn cần kiểm soát</div>
+  <h2>Rủi ro chính không nằm ở công nghệ, mà ở dữ liệu và thói quen vận hành</h2>
+  <div class="rule"></div>
+  <div class="grid cols-3">
+    <div class="card"><h3>Dữ liệu thiếu chuẩn</h3><p class="muted">Mỗi đơn vị lưu một kiểu, chỉ số không thống nhất.</p><ul><li>Gán owner dữ liệu</li><li>Chuẩn hóa data catalog</li></ul></div>
+    <div class="card"><h3>Người dùng không cập nhật</h3><p class="muted">Dashboard mất giá trị nếu tiến độ không được nhập đều.</p><ul><li>Gắn với họp giao ban</li><li>Cảnh báo quá hạn</li></ul></div>
+    <div class="card"><h3>Rủi ro bảo mật AI</h3><p class="muted">Tài liệu nhạy cảm cần phân loại trước khi đưa vào AI.</p><ul><li>Phân quyền nguồn</li><li>AI chỉ là bản nháp</li></ul></div>
+  </div>
+  <div class="grid cols-2" style="margin-top:.22in">
+    <div class="card"><h3>Nguyên tắc kiểm soát</h3><p class="muted">Triển khai nhỏ, có dữ liệu thật, đo được hiệu quả, có biên bản nghiệm thu.</p></div>
+    <div class="card"><h3>Nguyên tắc mở rộng</h3><p class="muted">Chỉ nhân rộng khi có owner, quy trình vận hành, KPI và chi phí duy trì rõ ràng.</p></div>
+  </div>
+  <div class="page">07</div>
+</section>
+
+<section class="slide dark">
+  <div class="brand">Quyết định cần chốt</div>
+  <div style="margin-top:.86in"></div>
+  <div class="kicker">Đề xuất cho lãnh đạo</div>
+  <h2>Chốt 4 quyết định để chương trình đi vào thực thi từ tháng 06/2026</h2>
+  <div class="rule"></div>
+  <div class="grid cols-2" style="max-width:12.4in">
+    <div class="card"><div class="num">01</div><h3>Phê duyệt danh mục ưu tiên</h3><p>Chọn nhóm nền tảng số, dữ liệu, AI và dashboard làm hạt nhân khởi động.</p></div>
+    <div class="card"><div class="num">02</div><h3>Chỉ định owner từng hạng mục</h3><p>Mỗi hạng mục có đơn vị phụ trách, phối hợp, KPI và lịch báo cáo.</p></div>
+    <div class="card"><div class="num">03</div><h3>Cho phép thí điểm dữ liệu thật</h3><p>Áp dụng trong phạm vi nhỏ, có kiểm soát bảo mật và phân quyền.</p></div>
+    <div class="card"><div class="num">04</div><h3>Thiết lập họp điều hành tháng</h3><p>Dùng dashboard và báo cáo cảnh báo làm căn cứ xử lý điểm nghẽn.</p></div>
+  </div>
+  <div class="page">08</div>
+</section>
+
+<section class="slide">
+  <div class="accent-line"></div><div class="brand">Kết luận</div>
+  <div style="margin-top:.9in"></div>
+  <div class="kicker">Thông điệp chính</div>
+  <h2>2026 là năm xây nền tảng vận hành công nghệ có dữ liệu, có AI, có nghiệm thu</h2>
+  <div class="rule"></div>
+  <div class="grid cols-3">
+    <div class="card"><div class="big-number">1</div><h3>Làm ít nhưng chắc</h3><p class="muted">Ưu tiên thí điểm có dữ liệu thật và giá trị đo được.</p></div>
+    <div class="card"><div class="big-number">2</div><h3>Dùng dữ liệu để điều hành</h3><p class="muted">Dashboard, cảnh báo và báo cáo tự động thay thế tổng hợp thủ công.</p></div>
+    <div class="card"><div class="big-number">3</div><h3>Tạo nền cho 2027</h3><p class="muted">Kết quả nghiệm thu là căn cứ lập ngân sách, nhân rộng và sản phẩm hóa.</p></div>
+  </div>
+  <div class="footer-note">TCT TDT · Kế hoạch Công nghệ trọng tâm 2026 · Bản tiếng Việt</div>
+  <div class="page">09</div>
+</section>
+
+</div>
+</body>
+</html>'''
+
+html_path.write_text(html, encoding="utf-8")
+
+with sync_playwright() as p:
+    browser = p.chromium.launch()
+    page = browser.new_page(viewport={"width": 1600, "height": 900}, device_scale_factor=1)
+    page.goto(html_path.resolve().as_uri(), wait_until="networkidle")
+    page.pdf(path=str(pdf_path), width="16in", height="9in", print_background=True, margin={"top":"0","right":"0","bottom":"0","left":"0"})
+    browser.close()
+
+print(html_path)
+print(pdf_path)
