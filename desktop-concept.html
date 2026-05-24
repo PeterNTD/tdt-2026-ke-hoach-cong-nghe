@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Phác Thảo UI/UX PC - Kế Hoạch Công Nghệ 2026</title>
+<style>
+:root{--bg:#f4f6fb;--paper:#fff;--ink:#132238;--muted:#68758a;--line:#e4e9f2;--blue:#0b63ce;--navy:#082b5f;--cyan:#0ea5b7;--gold:#c58b19;--green:#0f766e;--red:#b42318;--shadow:0 18px 48px rgba(15,23,42,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.55}.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}.side{position:sticky;top:0;height:100vh;background:#071d3a;color:white;padding:24px 18px;overflow:auto}.brand{font-size:22px;font-weight:850;line-height:1.1;margin-bottom:8px}.sub{font-size:13px;color:#bfd7ff;margin-bottom:24px}.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#8fb8ff;margin:22px 0 8px}.nav a{display:flex;align-items:center;gap:10px;color:#dbeafe;text-decoration:none;padding:10px 12px;border-radius:12px;font-weight:700;font-size:14px}.nav a:hover,.nav a.active{background:rgba(255,255,255,.12);color:#fff}.dot{width:8px;height:8px;border-radius:999px;background:var(--cyan)}.main{min-width:0}.hero{background:linear-gradient(135deg,#082b5f,#0b63ce 62%,#0f766e);color:white;padding:34px 42px 30px}.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:28px;align-items:end}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#bfdbfe;font-weight:800}.hero h1{font-size:44px;line-height:1.06;margin:10px 0 12px}.hero p{font-size:17px;color:#dbeafe;margin:0;max-width:760px}.hero-panel{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);border-radius:24px;padding:18px;backdrop-filter:blur(8px)}.hero-panel b{display:block;font-size:28px}.hero-panel span{font-size:13px;color:#dbeafe}.content{padding:28px 42px 54px}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:24px}.kpi{background:white;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}.kpi small{color:var(--muted);font-weight:750}.kpi b{display:block;font-size:29px;margin-top:4px;color:var(--navy)}.section-head{display:flex;justify-content:space-between;align-items:end;margin:30px 0 14px}.section-head h2{font-size:26px;margin:0;color:var(--navy)}.section-head p{margin:4px 0 0;color:var(--muted)}.tools{display:flex;gap:10px}.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:800;background:#eaf2ff;color:#0b4ea2}.btn.primary{background:var(--blue);color:white}.focus-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.focus-card{background:white;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}.focus-card .num{width:36px;height:36px;border-radius:12px;background:#eaf2ff;color:#0b4ea2;display:grid;place-items:center;font-weight:900}.focus-card h3{margin:12px 0 8px;font-size:18px}.focus-card p{margin:0;color:var(--muted);font-size:14px}.split{display:grid;grid-template-columns:360px 1fr;gap:18px}.list{background:white;border:1px solid var(--line);border-radius:24px;padding:12px;box-shadow:var(--shadow);max-height:610px;overflow:auto}.list-item{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:12px;border-radius:16px;border:1px solid transparent}.list-item.active,.list-item:hover{background:#f3f8ff;border-color:#d6e8ff}.list-item b{font-size:14px}.list-item span{font-size:12px;color:var(--muted)}.badge{width:30px;height:30px;border-radius:10px;background:#eef6ff;color:#0b63ce;display:grid;place-items:center;font-weight:900;font-size:12px}.detail{background:white;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}.detail-top{padding:22px 24px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff,#f7fbff)}.detail-top h3{margin:0 0 8px;font-size:24px;color:var(--navy)}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{font-size:12px;font-weight:800;border-radius:999px;padding:6px 10px;background:#eff6ff;color:#0b4ea2}.detail-body{padding:22px 24px;display:grid;grid-template-columns:1fr 1fr;gap:16px}.info{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fbfdff}.info small{display:block;color:var(--muted);font-weight:850;text-transform:uppercase;font-size:11px;letter-spacing:.08em;margin-bottom:6px}.info p{margin:0}.wide{grid-column:1/-1}.budget{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.budget-card{background:white;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}.budget-card h3{margin:0;color:var(--muted);font-size:14px}.budget-card b{display:block;font-size:32px;margin:8px 0;color:var(--navy)}.bar-wrap{display:grid;gap:12px;background:white;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}.bar-row{display:grid;grid-template-columns:190px 1fr 86px;gap:12px;align-items:center}.bar-label{font-weight:750;font-size:14px}.bar{height:12px;border-radius:999px;background:#eef2f7;overflow:hidden}.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--cyan))}.bar-val{text-align:right;color:var(--muted);font-weight:800}.timeline{display:grid;grid-template-columns:repeat(7,minmax(140px,1fr));gap:12px;overflow:auto;padding-bottom:8px}.month{background:white;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow);min-height:190px}.month h3{margin:0 0 10px;color:var(--navy)}.month ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}.kpi-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.kpi-group{background:white;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow)}.kpi-group h3{margin:0 0 10px;color:var(--navy)}.kpi-group li{margin:8px 0;color:var(--muted)}.note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:18px;padding:16px;margin-top:24px}@media(max-width:1100px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.hero-grid,.split{grid-template-columns:1fr}.kpis,.focus-grid,.budget,.kpi-groups{grid-template-columns:1fr 1fr}.detail-body{grid-template-columns:1fr}}@media(max-width:720px){.content,.hero{padding-left:18px;padding-right:18px}.kpis,.focus-grid,.budget,.kpi-groups{grid-template-columns:1fr}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">Kế Hoạch<br>Công Nghệ 2026</div>
+    <div class="sub">PC Executive Dashboard · TDT</div>
+    <div class="nav-title">Tổng Quan</div>
+    <nav class="nav">
+      <a class="active" href="#overview"><span class="dot"></span> Dashboard</a>
+      <a href="#focus"><span class="dot"></span> 6 Lĩnh Vực</a>
+      <a href="#projects"><span class="dot"></span> 27 Dự Án</a>
+      <a href="#budget"><span class="dot"></span> Ngân Sách</a>
+      <a href="#timeline"><span class="dot"></span> Tiến Độ</a>
+      <a href="#kpi"><span class="dot"></span> KPI</a>
+    </nav>
+    <div class="nav-title">Nguyên Tắc UI</div>
+    <nav class="nav">
+      <a><span class="dot"></span> Không dùng bảng ngang lớn</a>
+      <a><span class="dot"></span> Card hóa từng dòng dữ liệu</a>
+      <a><span class="dot"></span> Timeline hóa tiến độ</a>
+      <a><span class="dot"></span> Chart hóa ngân sách</a>
+    </nav>
+  </aside>
+  <main class="main">
+    <section class="hero" id="overview">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Phác Thảo UI/UX PC</div>
+          <h1>Không Còn Bảng Ngang Chật Chội</h1>
+          <p>Thiết kế lại viewer theo hướng dashboard điều hành: thông tin dài được chia thành card, project detail, timeline và biểu đồ ngân sách để đọc tốt trên màn hình PC.</p>
+        </div>
+        <div class="hero-panel"><b>Card / Timeline / Chart</b><span>Thay thế table nhiều cột gây vỡ layout</span></div>
+      </div>
+    </section>
+    <section class="content">
+      <div class="kpis">
+        <div class="kpi"><small>Lĩnh Vực</small><b>6</b></div>
+        <div class="kpi"><small>Dự Án</small><b>27</b></div>
+        <div class="kpi"><small>Giai Đoạn</small><b>06–12</b></div>
+        <div class="kpi"><small>Ngân Sách TB</small><b>16,23 Tỷ</b></div>
+      </div>
+
+      <div class="section-head" id="focus"><div><h2>1. 6 Lĩnh Vực Trọng Tâm</h2><p>Mỗi lĩnh vực là một card ngắn, dễ scan, không ép vào bảng.</p></div><div class="tools"><button class="btn primary">Xem Chi Tiết</button><button class="btn">Xuất PDF</button></div></div>
+      <div class="focus-grid">
+        <article class="focus-card"><div class="num">01</div><h3>Nền Tảng Số</h3><p>Hệ thống quản trị, văn bản điện tử, kho dữ liệu và tích hợp tài khoản.</p></article>
+        <article class="focus-card"><div class="num">02</div><h3>AI & Điều Hành Thông Minh</h3><p>Trợ lý AI, dashboard, AI văn bản và cảnh báo rủi ro điều hành.</p></article>
+        <article class="focus-card"><div class="num">03</div><h3>Công Nghệ Công Nghiệp</h3><p>Số hóa sản xuất, giám sát thiết bị, QC dữ liệu, kho và năng lượng.</p></article>
+        <article class="focus-card"><div class="num">04</div><h3>Vật Liệu Chiến Lược</h3><p>Rà soát, thử nghiệm, hợp tác nghiên cứu, bảo hộ và thương mại hóa.</p></article>
+        <article class="focus-card"><div class="num">05</div><h3>Đô Thị & BĐS Tinh Khiết</h3><p>Quản lý dự án, tài sản, kinh doanh, cư dân và đô thị thông minh.</p></article>
+        <article class="focus-card"><div class="num">06</div><h3>Sản Phẩm Hóa & IP</h3><p>Quy trình sản phẩm hóa, MVP, IP và phương án thương mại hóa.</p></article>
+      </div>
+
+      <div class="section-head" id="projects"><div><h2>2. Danh Mục 27 Dự Án</h2><p>Dùng master-detail thay bảng 8 cột. Chọn bên trái, đọc chi tiết bên phải.</p></div></div>
+      <div class="split">
+        <div class="list">
+          <div class="list-item active"><div class="badge">01</div><div><b>Hệ Thống Quản Trị Công Việc</b><span>Nền Tảng Số · 06–09/2026</span></div></div>
+          <div class="list-item"><div class="badge">05</div><div><b>Trợ Lý AI Nội Bộ TCT TDT</b><span>AI & Điều Hành · 06–09/2026</span></div></div>
+          <div class="list-item"><div class="badge">06</div><div><b>Dashboard Điều Hành Thông Minh</b><span>AI & Điều Hành · 07–12/2026</span></div></div>
+          <div class="list-item"><div class="badge">09</div><div><b>Số Hóa Dữ Liệu Sản Xuất</b><span>Công Nghệ Công Nghiệp · 07–12/2026</span></div></div>
+          <div class="list-item"><div class="badge">18</div><div><b>Nền Tảng Quản Lý Dự Án BĐS</b><span>Đô Thị & BĐS · 07–12/2026</span></div></div>
+        </div>
+        <div class="detail">
+          <div class="detail-top"><h3>Hệ Thống Quản Trị Công Việc Và Tiến Độ Tập Đoàn</h3><div class="chips"><span class="chip">Ưu Tiên 1</span><span class="chip">Nền Tảng Số</span><span class="chip">06–09/2026</span></div></div>
+          <div class="detail-body">
+            <div class="info wide"><small>Mục Tiêu</small><p>Số hóa giao việc, theo dõi tiến độ, cảnh báo chậm hạn và tổng hợp báo cáo điều hành.</p></div>
+            <div class="info"><small>Phạm Vi</small><p>TCT TDT, Văn phòng Tập đoàn, phòng/ban và một số Tổng công ty thí điểm.</p></div>
+            <div class="info"><small>Sản Phẩm Đầu Ra</small><p>Hệ thống quản trị công việc, dashboard tiến độ, mẫu báo cáo tuần/tháng.</p></div>
+            <div class="info"><small>Nghiệm Thu</small><p>Có dữ liệu nhiệm vụ thực tế, 1–2 đơn vị sử dụng, xuất báo cáo tự động.</p></div>
+            <div class="info"><small>KPI</small><p>Tỷ lệ cập nhật nhiệm vụ, người dùng thường xuyên, báo cáo tự động.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head" id="budget"><div><h2>3. Ngân Sách Dạng Dashboard</h2><p>Không đọc số trong bảng dài, chuyển thành thẻ tổng và bar chart.</p></div></div>
+      <div class="budget">
+        <div class="budget-card"><h3>Kịch Bản Thấp</h3><b>5,51 Tỷ</b><p>Thí điểm gọn, ít tích hợp.</p></div>
+        <div class="budget-card"><h3>Kịch Bản Trung Bình</h3><b>16,23 Tỷ</b><p>Khuyến nghị cho kế hoạch 2026.</p></div>
+        <div class="budget-card"><h3>Kịch Bản Cao</h3><b>37,55 Tỷ</b><p>Triển khai rộng, tích hợp sâu.</p></div>
+      </div>
+      <div class="bar-wrap" style="margin-top:16px">
+        <div class="bar-row"><div class="bar-label">Đô Thị & BĐS</div><div class="bar"><i style="width:100%"></i></div><div class="bar-val">4,4 tỷ</div></div>
+        <div class="bar-row"><div class="bar-label">Nền Tảng Số</div><div class="bar"><i style="width:75%"></i></div><div class="bar-val">3,3 tỷ</div></div>
+        <div class="bar-row"><div class="bar-label">Công Nghiệp</div><div class="bar"><i style="width:73%"></i></div><div class="bar-val">3,2 tỷ</div></div>
+        <div class="bar-row"><div class="bar-label">AI Điều Hành</div><div class="bar"><i style="width:56%"></i></div><div class="bar-val">2,45 tỷ</div></div>
+        <div class="bar-row"><div class="bar-label">Sản Phẩm Hóa/IP</div><div class="bar"><i style="width:36%"></i></div><div class="bar-val">1,58 tỷ</div></div>
+      </div>
+
+      <div class="section-head" id="timeline"><div><h2>4. Tiến Độ Dạng Timeline</h2><p>Thay bảng tháng bằng timeline theo mốc triển khai.</p></div></div>
+      <div class="timeline">
+        <div class="month"><h3>06/2026</h3><ul><li>Rà soát hiện trạng</li><li>Chốt danh mục ưu tiên</li><li>Khởi động quy trình</li></ul></div>
+        <div class="month"><h3>07/2026</h3><ul><li>Triển khai nền tảng lõi</li><li>AI văn bản</li><li>Dashboard bản đầu</li></ul></div>
+        <div class="month"><h3>08/2026</h3><ul><li>Mở rộng dữ liệu</li><li>Thí điểm sản xuất</li><li>Cảnh báo rủi ro</li></ul></div>
+        <div class="month"><h3>09/2026</h3><ul><li>Đánh giá thí điểm</li><li>Hoàn thiện AI nội bộ</li><li>Đô thị thông minh</li></ul></div>
+        <div class="month"><h3>10/2026</h3><ul><li>Nghiệm thu giai đoạn</li><li>MVP sản phẩm</li><li>IP và thương mại hóa</li></ul></div>
+        <div class="month"><h3>11/2026</h3><ul><li>Nhân rộng chọn lọc</li><li>Bổ sung dashboard</li><li>Tối ưu quy trình</li></ul></div>
+        <div class="month"><h3>12/2026</h3><ul><li>Tổng kết KPI</li><li>Hồ sơ nghiệm thu</li><li>Kế hoạch 2027</li></ul></div>
+      </div>
+
+      <div class="section-head" id="kpi"><div><h2>5. KPI Theo Nhóm Card</h2><p>KPI được nhóm theo lĩnh vực để đọc nhanh và tránh bảng dài.</p></div></div>
+      <div class="kpi-groups">
+        <div class="kpi-group"><h3>Nền Tảng Số</h3><ul><li>Tỷ lệ nhiệm vụ cập nhật trên hệ thống.</li><li>Số dashboard/báo cáo tự động.</li><li>Số hệ thống được chuẩn hóa/tích hợp.</li></ul></div>
+        <div class="kpi-group"><h3>AI & Điều Hành</h3><ul><li>Số nghiệp vụ AI hỗ trợ.</li><li>Thời gian xử lý báo cáo giảm.</li><li>Số cảnh báo rủi ro được xử lý.</li></ul></div>
+        <div class="kpi-group"><h3>Công Nghệ Công Nghiệp</h3><ul><li>Tỷ lệ dữ liệu sản xuất được số hóa.</li><li>Giảm thời gian dừng máy.</li><li>Giảm lỗi lặp lại trong QC.</li></ul></div>
+        <div class="kpi-group"><h3>Đô Thị, BĐS, IP</h3><ul><li>Số dự án BĐS có dashboard.</li><li>Số MVP được thử nghiệm.</li><li>Số tài sản IP được rà soát/bảo hộ.</li></ul></div>
+      </div>
+      <div class="note"><b>Đề xuất triển khai:</b> tạo bản desktop thật theo cấu trúc này, đặt làm <code>index.html</code>; giữ bảng markdown gốc làm tài liệu nguồn, không render trực tiếp thành bảng ngang lớn.</div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
